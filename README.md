@@ -5,26 +5,49 @@ El algoritmo binario exponencial es una manera de calcular el exponente de un de
 Ejemplo (con pseudocódigo)
 
 function bin_exp (input_base, input_exponente, input_resultado)
-		base = input_base
-		exponente = input_exponente
-		resultado = input_resultado
+
 	if exponente == 0
 		return 1
-	if exponente % 2 == 0 
-		base *= base 
-		exponente = exponente / 2
-		bin_exp(base, exponente, resultado)
-	if exponente % 2 == 1
+
+	else if exponente % 2 == 0 
+		bin_exp(base * base , exponente /2 , resultado) //Aqui está la recursividad
+
+	else if exponente % 2 == 1
 		if exponente == 1
-			resultado = resultado * base
-			return resultado
-		resultado = resultado * base 
-		base *= base
-		exponente = (exponente - 1) / 2
-		bin_exp(base, exponente, resultado)
+			return resultado * base
+		else
+			bin_exp(base * base, (exponente -1) / 2, resultado * base) //Aqui esta la recursividad
 
-Suponiendo que tenemos a calcular 2^12, 2 = base, 12 = exponente, el resultado inicia siendo 1, entonces mandamos a llamar a nuestra función con estos parámetros
+	else
+		return "input invalido"
 
-bin_exp(2,12,1)
 
-Como el exponente es diferente de 0, y es par...
+El pseudocódigo representa la partición de un número con su exponente en multiplicaciones equivalentes, por ejemplo, es lo mismo 2^12 que 4^6 y es lo mismo 4^6 que 16^3 asi como 256 * 16 y finalmente obtienes el resultado con un par de operaciones en vez de multiplicar 2 doce veces consecutivas. 
+
+Este principio se basa en operaciones equivalentes, si el exponente es un número par, se divide en dos y la base se multiplica por si misma, y se vuelve a llamar el ciclo, si el exponente es impar, y es diferente de 1 entonces la base se multiplica por si misma y el exponente se convierte en (exp -1)/2, y se multiplica la base por el resultado, que se inicia en 1.
+
+Ejemplo:
+
+el ciclo empieza aqui
+
+2^12
+
+el exponente es par, entonces se divide en dos y la base se multiplica por si misma
+
+4^6
+
+Aqui inica otr ciclo, donde vemos el mismo caso entonces hacemos lo mismo
+
+16^3
+
+Aqui se vuelve a ciclar pero el exponente es impar, por lo que se multiplica la base por el resultado (que por defecto es 1), la base se multiplica por la base y el exponente se convierte en (exp -1/2), por lo que quedaría algo asi
+
+256^1 * 16
+
+si la base, que en este caso es 256, su exponente llegó a 1, entonces ya llegamos al paso final, donde se multiplica el resultado (16) por la base (256) y nos da el resultado
+
+4096
+
+		
+
+

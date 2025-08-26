@@ -1,27 +1,22 @@
-def bin_exp(input_base, input_exponente, input_resultado ):
-    base = input_base
-    exponente = input_exponente
-    resultado = input_resultado
-    
+def bin_exp(base, exponente, resultado ): 
+       
     if exponente == 0:
         return 1
     elif exponente % 2 == 0:
-        base *= base
-        exponente = exponente / 2
-        return bin_exp(base, exponente, resultado)
+        return bin_exp(base *base, exponente/2, resultado)
+    
     elif exponente % 2 != 0:
+        
         if exponente == 1:
-            resultado = resultado * base
-            return resultado
+            return resultado * base
         else:
-            resultado = resultado * base
-            base *= base
-            exponente = (exponente -1 ) / 2
-            return bin_exp(base, exponente, resultado)
-    else: "si"
-            
+            return bin_exp(base * base, (exponente -1)/2, resultado *base)
+        
+    else: 
+        return "numero no valido"  
     
     
     
     
-print(bin_exp(2,12,1))
+print(bin_exp(2,12,1)) #base, exponente, y el resultado siempre se inicializa en 1
+print(pow(2,12)) #Da el mismo resultado usando la funcion pow()
