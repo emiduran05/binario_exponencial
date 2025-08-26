@@ -4,7 +4,7 @@ El algoritmo binario exponencial es una manera de calcular el exponente de un de
 
 Ejemplo (con pseudocódigo)
 
-function bin_exp (input_base, input_exponente, input_resultado)
+function bin_exp (base, exponente, resultado)
 
 	if exponente == 0
 		return 1
